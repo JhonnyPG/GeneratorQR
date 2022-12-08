@@ -1,0 +1,34 @@
+﻿@page "/"
+
+<div id = "content">
+	<MudCard Style = "margin:auto;width:300px;padding:20px;">
+		<MudCardContent>
+			<MudForm @ref="urlSubtimForm">
+				<MudText>Genera QR Code</MudText>
+				<MudTextField @bind-Value="submittedUrl" Label="Url" 
+				HelperText="e.g. https://google.com" Variant="Variant.Outlined"
+				Required="true" RequiredError="The Url es necesaria"></MudTextField>
+
+				<MudButton Variant="Variant.Outlined" Color ="Color.Primary" @onclick="@(async () => await submitUrl())">
+					Enviar
+				</MudButton>
+
+
+			</MudForm>
+		</MudCardContent>
+	</MudCard>
+
+	@if (!String.IsNullOrEmpty(QRCodeText))
+	{
+
+		<MudPaper MaxWidth="auto" Style="margin:auto">
+			<div class="qr-container">
+				<img width="400" height="400" src="@QRCodeText" />
+			</div>
+
+
+		</MudPaper>
+	
+	}
+
+</div>
